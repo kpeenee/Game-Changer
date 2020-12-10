@@ -1,0 +1,28 @@
+{
+  "name": "Game-Changer",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "devStart": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kpeenee/Game-Changer.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kpeenee/Game-Changer/issues"
+  },
+  "homepage": "https://github.com/kpeenee/Game-Changer#readme",
+  "dependencies": {
+    "ejs": "^3.1.5",
+    "express": "^4.17.1",
+    "mongoose": "^5.11.6"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.6"
+  }
+}
