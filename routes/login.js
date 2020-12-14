@@ -6,6 +6,14 @@ router.get('/' , (req, res) =>{
     res.render('login');
 })
 
+router.post('/', (req,res) =>{
+    console.log("Should Login");
+    let use = User.find({username: req.body.username} , function(err,user){
+        console.log(user.length);
+    });
+    
+})
+
 router.get('/signup'  , (req,res) =>{
     res.render('signUp');
 });
