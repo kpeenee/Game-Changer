@@ -8,8 +8,13 @@ router.get('/' , (req, res) =>{
 
 router.post('/', (req,res) =>{
     console.log("Should Login");
-    let use = User.find({username: req.body.username} , function(err,user){
-        console.log(user.length);
+    let use = User.findOne({username: req.body.username} , function(err,user){
+        if(user.password == req.body.password){
+            res.send("Logged in");
+        }
+        else{
+            res.send("Incorrect password");
+        }
     });
     
 })
