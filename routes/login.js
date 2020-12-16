@@ -27,17 +27,24 @@ router.get('/:id' ,(req,res) => {
     res.send(req.params.id);
 })
 
-router.post('/signup' , async (req,res) =>{
+router.post('/signup' ,  (req,res) =>{
     let user = new User({
         username: req.body.username,
         password: req.body.password
     })
-    try{
-    user = await user.save();
-    res.redirect(`/login/${user.id}`);
-    }catch (e) {
-        res.render('signup');
-    }
+    User.find({username : user.username},async function(err,newUser){
+        if(newUser.length > 0)
+        {
+            res.send("Username already exists");
+        }else{
+            try{
+                user = await user.save();
+                res.redirect(`/login/${user.id}`);
+                }catch (e) {
+                    res.render('signup');
+                }
+        }
+    })
 })
 
 module.exports = router;
