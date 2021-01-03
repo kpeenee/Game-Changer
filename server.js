@@ -16,4 +16,10 @@ app.get('/', (req,res) =>{
     res.render('index');
 });
 
+app.post('/create', (req,res) => {
+    console.log("Recieved info");
+    console.log(req.body.title);
+    console.log(req.body.description);
+});
+
 app.listen(5000);
