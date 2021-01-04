@@ -12,9 +12,13 @@
     <script>
         $(document).ready(function(){
             $("#create").click(function(){
+                let projectTitle = $("#title").val();
+                let projectDesc = $("#description").val();
+                console.log(projectTitle);
+                console.log(projectDesc);
                 $.post("/create",{
-                title: "squares",
-                description: "Game where you fight squares!"},
+                title: projectTitle ,
+                description: projectDesc},
                 function(data,status){
                     alert("yeee");
                 });
@@ -43,9 +47,9 @@
                 </div>
                 <div class="modal-body">
                      <h5>Project Title</h5>
-                     <input type="text">
-                     <h5>Description</h5>
-                     <input type="text">
+                     <input id="title" type="text">
+                     <h5 >Description</h5>
+                     <input id="description" type="text">
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
