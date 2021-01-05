@@ -16,7 +16,7 @@
                 let projectDesc = $("#description").val();
                 console.log(projectTitle);
                 console.log(projectDesc);
-                $.post("/create",{
+                $.post("/project/create",{
                 title: projectTitle ,
                 description: projectDesc},
                 function(data,status){
@@ -28,7 +28,7 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Hello <%= username %></h1>
+    <h1>Hello <%= loggedUser.username %></h1>
 
     
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#newProject">
