@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 const { urlencoded } = require('express');
 const app = express();
 
-mongoose.connect('mongodb://localhost/users',{ useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect('mongodb://localhost/users',{useFindAndModify: false, useNewUrlParser: true, useUnifiedTopology: true })
 
 app.set('view engine', 'ejs');
 

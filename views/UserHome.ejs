@@ -14,11 +14,14 @@
             $("#create").click(function(){
                 let projectTitle = $("#title").val();
                 let projectDesc = $("#description").val();
+                let userId = $("#userID").text();
                 console.log(projectTitle);
                 console.log(projectDesc);
+                console.log(userId);
                 $.post("/project/create",{
                 title: projectTitle ,
-                description: projectDesc},
+                description: projectDesc,
+                usersId: userId},
                 function(data,status){
                     alert("yeee");
                 });
@@ -29,12 +32,25 @@
 </head>
 <body>
     <h1>Hello <%= loggedUser.username %></h1>
+    <p id="userID" hidden><%= loggedUser._id %></p>
 
     
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#newProject">
     New+
     </button>
-  
+
+    <% loggedUser.projects.forEach(project => { %>
+        <div class="card mt-4">
+            <div class="card-body">
+                <h4 class="card-title">
+                    <%= project.title %>
+                </h4>
+                <div class="card-subtitle">
+                    <%= project.description %>
+                </div>
+            </div>
+        </div>  
+        <% }) %>
   
     <div class="modal fade" id="newProject" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
