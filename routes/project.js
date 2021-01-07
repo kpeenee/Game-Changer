@@ -2,6 +2,23 @@ const express = require('express');
 const User = require('./../models/user');
 const router = express.Router();
 
+router.get('/view/:userId/:title', (req,res) => {
+    console.log(req.params);
+    User.findById(req.params.userId, function(err, user){
+        let index = 0;
+        let found = false;
+        do{
+            if(user.projects[index].title == req.params.title){
+                found = true;
+            } else{
+                index++;
+            }
+        } while(found == false)
+        res.render('ProjectView',{userId: req.params.usersId,
+                                  project: user.projects[index]});
+    });
+
+});
 
 router.post('/create', (req,res) => {
     console.log("Recieved info");
@@ -23,7 +40,6 @@ router.post('/create', (req,res) => {
                console.log("Works");
            }
        });
-
 });
 
  function getUsersProjects(ID){

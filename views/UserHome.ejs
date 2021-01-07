@@ -40,6 +40,7 @@
     </button>
 
     <% loggedUser.projects.forEach(project => { %>
+
         <div class="card mt-4">
             <div class="card-body">
                 <h4 class="card-title">
@@ -48,8 +49,10 @@
                 <div class="card-subtitle">
                     <%= project.description %>
                 </div>
+                <a class="btn btn-primary" href="/project/view/<%= loggedUser.id %>/<%= project.title %>">Edit</a>
+                <a class="btn btn-secondary">Delete</a>
             </div>
-        </div>  
+        </div>
         <% }) %>
   
     <div class="modal fade" id="newProject" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
