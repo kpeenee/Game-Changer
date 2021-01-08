@@ -9,11 +9,49 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+         $(document).ready(function(){
+             console.log("working");
+            $("#addTask").click(function(){
+                console.log("Update user tasks");
+                let id = $("#user").text();
+                let taskToAdd = $("#taskToAdd").val();
+                let title = $("#projectTitle").text();
+                let projectIndex = $("#index").text();
+                
+                
+                $.post("/project/addTask", {
+                    userId : id,
+                    newTask: taskToAdd,
+                    project: title,
+                    index: projectIndex
+                });
+            });
+
+            $("#addMechanic").click(function(){
+                console.log("Update user tasks");
+                let id = $("#user").text();
+                let mechanicToAdd = $("#mechanicToAdd").val();
+                let title = $("#projectTitle").text();
+                let projectIndex = $("#index").text();
+                
+                
+                $.post("/project/addMechanic", {
+                    userId : id,
+                    newMechanic: mechanicToAdd,
+                    project: title,
+                    index: projectIndex
+                });
+            });
+         });
+    </script>
     <title>Document</title>
 </head>
 <body>
-    <h1><%= project.title %></h1>
-    <h3><%= project.description %></h3>
+    <p id="user" hidden><%= userId %></p>
+    <p id="index" hidden><%= projectIndex %></p>
+    <h1 id="projectTitle"><%= project.title %></h1>
+    <h3 id="projectDescription"><%= project.description %></h3>
 
     <button class="btn-primary mechanicAdd" data-toggle="modal" data-target="#newMechanic">+ Mechanic</button>
     <button class="btn-primary taskAdd" data-toggle="modal" data-target="#newTask">+ Task</button>

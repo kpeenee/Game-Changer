@@ -14,10 +14,11 @@ router.get('/view/:userId/:title', (req,res) => {
                 index++;
             }
         } while(found == false)
-        res.render('ProjectView',{userId: req.params.usersId,
-                                  project: user.projects[index]});
-    });
 
+        res.render('ProjectView',{userId: req.params.userId,
+                                  project: user.projects[index],
+                                  projectIndex: index});
+    });
 });
 
 router.post('/create', (req,res) => {
@@ -42,8 +43,44 @@ router.post('/create', (req,res) => {
        });
 });
 
- function getUsersProjects(ID){
-    console.log(User.findById(ID, 'projects').exec());
- }
+router.post('/addTask', async (req,res) => {
+    console.log(req.body);
+    let userId = req.body.userId;
+    let projectIndex = req.body.index;
+    let newTask = req.body.newTask;
+    let user = await User.findById(userId).exec();
+    console.log(user.projects[projectIndex].tasks);
+    user.projects[projectIndex].tasks.push(newTask);
+    console.log(user.projects[projectIndex].tasks);
+    User.findByIdAndUpdate(userId, {projects: user.projects}, function(err, data){
+        if(err){
+            console.log(err);
+        }
+        else{
+            console.log("Works");
+        }
+    });
+});
+
+router.post('/addMechanic', async (req,res) => {
+    console.log(req.body);
+    let userId = req.body.userId;
+    let projectIndex = req.body.index;
+    let newMechanic = req.body.newMechanic;
+    let user = await User.findById(userId).exec();
+    console.log(user.projects[projectIndex].mechanics);
+    user.projects[projectIndex].mechanics.push(newMechanic);
+    console.log(user.projects[projectIndex].mechanics);
+    User.findByIdAndUpdate(userId, {projects: user.mechanics}, function(err, data){
+        if(err){
+            console.log(err);
+        }
+        else{
+            console.log("Works");
+        }
+    });
+});
+
+
 
 module.exports = router;
