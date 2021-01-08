@@ -62,24 +62,6 @@ router.post('/addTask', async (req,res) => {
     });
 });
 
-router.post('/addMechanic', async (req,res) => {
-    console.log(req.body);
-    let userId = req.body.userId;
-    let projectIndex = req.body.index;
-    let newMechanic = req.body.newMechanic;
-    let user = await User.findById(userId).exec();
-    console.log(user.projects[projectIndex].mechanics);
-    user.projects[projectIndex].mechanics.push(newMechanic);
-    console.log(user.projects[projectIndex].mechanics);
-    User.findByIdAndUpdate(userId, {projects: user.mechanics}, function(err, data){
-        if(err){
-            console.log(err);
-        }
-        else{
-            console.log("Works");
-        }
-    });
-});
 
 
 
