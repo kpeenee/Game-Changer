@@ -31,10 +31,7 @@ router.get('/:id' ,(req,res) => {
 })
 
 router.post('/signup' ,  (req,res) =>{
-    let user = new User({
-        username: req.body.username,
-        password: req.body.password
-    })
+    let user = CreateUser(req.body.username, req.body.password)
     User.find({username : user.username},async function(err,newUser){
         if(newUser.length > 0)
         {
@@ -50,4 +47,14 @@ router.post('/signup' ,  (req,res) =>{
     })
 })
 
-module.exports = router;
+function CreateUser(newUsername, newPassword ) {
+    return new User({
+        username: newUsername,
+        password: newPassword
+    });
+}
+
+module.exports ={ router, 
+                  CreateUser};
+
+

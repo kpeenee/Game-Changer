@@ -27,10 +27,7 @@ router.post('/create', (req,res) => {
     newDescription = req.body.description;
     UserId = req.body.usersId;
 
-    let newProject = {
-        title: newTitle,
-        description: newDescription
-    };
+    let newProject = createProject(newTitle,newDescription);
 
     User.findByIdAndUpdate(req.body.usersId, 
        {$push: {projects: newProject}}, function(err, project){
@@ -62,7 +59,14 @@ router.post('/addTask', async (req,res) => {
     });
 });
 
+function createProject(projectTitle, projectDescription) {
+    return {
+        title: projectTitle,
+        description: projectDescription
+    };
+}
 
 
+module.exports = {router, createProject};
 
-module.exports = router;
+

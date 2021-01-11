@@ -1,6 +1,6 @@
 const express = require('express');
-const loginRoute = require('./routes/login');
-const projectRoute = require('./routes/project');
+const loginRoute = require('./routes/login').router;
+const projectRoute = require('./routes/project').router;
 const mongoose = require('mongoose');
 const { urlencoded } = require('express');
 const app = express();
