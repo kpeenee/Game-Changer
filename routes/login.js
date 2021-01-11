@@ -9,6 +9,10 @@ router.get('/' , (req, res) =>{
 router.post('/', (req,res) =>{
     console.log("Should Login");
     let use = User.findOne({username: req.body.username} , function(err,user){
+        if(user == undefined){
+            res.render('login');
+            return;
+        }
         if(user.password == req.body.password){
             res.render('UserHome', {loggedUser: user});
         }
